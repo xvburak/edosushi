@@ -1,0 +1,98 @@
+[
+
+
+    {
+        "type": "sushi set",
+        "contents": [
+            {
+                "title":"Family Set" ,
+                "price": 860,
+                "contents": [
+                    {
+                        "title":"hoso maki",
+                        "q":18,
+                        "contents":"losos, krevety, bílá ryba"
+                    },
+                    {
+                        "title":"uramaki a futomaki",
+                        "q":16,
+                        "contents":"masago kaviár, avokádo"
+                    },
+                    {
+                        "title":"nigiri",
+                        "q":9,
+                        "contents":"veg rolky, speciální rolky"
+                    }
+            ]
+            },
+            {
+                "title":"Party Set" ,
+                "price": 1360,
+                "contents": [
+                    {
+                        "title":"hoso maki",
+                        "q":30,
+                        "contents":"losos, krevety, bílá ryba"
+                    },
+                    {
+                        "title":"uramaki a futomaki",
+                        "q":24,
+                        "contents":"masago kaviár, avokádo"
+                    },
+                    {
+                        "title":"nigiri",
+                        "q":15,
+                        "contents":"veg rolky, speciální rolky"
+                    }
+            ]
+            }
+
+        ]
+    },
+    {
+        "type": "obědový box",
+        "contents": [
+            {
+                "title":"Edo Box" ,
+                "contents": [
+                    {
+                        "title":"hoso maki",
+                        "q":18,
+                        "contents":"losos, krevety, bílá ryba"
+                    },
+                    {
+                        "title":"uramaki a futomaki",
+                        "q":16,
+                        "contents":"masago kaviár, avokádo"
+                    },
+                    {
+                        "title":"nigiri",
+                        "q":9,
+                        "contents":"veg rolky, speciální rolky"
+                    }
+            ]
+            },
+            {
+                "title":"Maki Box" ,
+                "contents": [
+                    {
+                        "title":"hoso maki",
+                        "q":30,
+                        "contents":"losos, krevety, bílá ryba"
+                    },
+                    {
+                        "title":"uramaki a futomaki",
+                        "q":24,
+                        "contents":"masago kaviár, avokádo"
+                    },
+                    {
+                        "title":"nigiri",
+                        "q":15,
+                        "contents":"veg rolky, speciální rolky"
+                    }
+            ]
+            }
+
+        ]
+    }
+]

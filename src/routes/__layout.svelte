@@ -11,7 +11,7 @@
     <Anouncment /> 
     <NavBar />
     {#if $page.url.pathname === '/'}
-        <div class="bg-hp-bg flex-1 overflow-auto">
+        <div class="bg-hp-bg bg-cover flex-1 overflow-auto">
             <slot />
         </div>
 
