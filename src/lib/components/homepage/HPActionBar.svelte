@@ -1,7 +1,15 @@
 <script>
 	import HPActionBarTile from "$lib/components/homepage/HPActionBarTile.svelte";
     import sushi from '$lib/data/sushis.json';
+
+    // import { count } from './stores.js';
+
+    function increment() {
+        count.update(n => n + 1);
+    }
 </script>
+
+
 
 
 <!-- {#each sushi as {title, type, contents}}
@@ -18,14 +26,18 @@
     {/if}
 {/each} -->
 
-<div class="flex space-x-2">
-    {#each sushi as {type, contents}}
+<div class="flex space-x-2 bg-none">
+    {#each sushi as {type, contents, q}}
             <HPActionBarTile>
                 <h3 slot="title">Objednat {type}</h3>
-
                 <p slot="content">(&nbsp;
-                {#each contents as {title}, index}
-                        {title}&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
+                {#each contents as {title, q}, index}
+                {#if q}
+                    {title}&nbsp;({q} ks)&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
+                {:else}
+                    {title}&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
+                {/if}
+                        
                 {/each}
                 )
                 </p>

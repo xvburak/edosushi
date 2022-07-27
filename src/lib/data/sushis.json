@@ -7,6 +7,7 @@
             {
                 "title":"Family Set" ,
                 "price": 860,
+                "q": 43,
                 "contents": [
                     {
                         "title":"hoso maki",
@@ -28,6 +29,7 @@
             {
                 "title":"Party Set" ,
                 "price": 1360,
+                "q" : 69,
                 "contents": [
                     {
                         "title":"hoso maki",
@@ -74,6 +76,26 @@
             },
             {
                 "title":"Maki Box" ,
+                "contents": [
+                    {
+                        "title":"hoso maki",
+                        "q":30,
+                        "contents":"losos, krevety, bílá ryba"
+                    },
+                    {
+                        "title":"uramaki a futomaki",
+                        "q":24,
+                        "contents":"masago kaviár, avokádo"
+                    },
+                    {
+                        "title":"nigiri",
+                        "q":15,
+                        "contents":"veg rolky, speciální rolky"
+                    }
+            ]
+            },
+            {
+                "title":"Veg Box" ,
                 "contents": [
                     {
                         "title":"hoso maki",

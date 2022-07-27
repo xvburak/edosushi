@@ -3,6 +3,9 @@
     import Anouncment from "$lib/components/Anouncment.svelte";
     import NavBar from "$lib/components/NavBar.svelte";
     import { page } from '$app/stores';
+    import HPActionBar from "$lib/components/homepage/HPActionBar.svelte";
+
+
   </script>
 
 
@@ -11,10 +14,11 @@
     <Anouncment /> 
     <NavBar />
     {#if $page.url.pathname === '/'}
-        <div class="bg-hp-bg bg-cover flex-1 overflow-auto">
+        <div class="bg-hp-bg bg-cover flex-1 overflow-auto flex flex-col justify-end">
             <slot />
+            <HPActionBar />
         </div>
-
+        
     {:else}
         <div class="bg-gray flex-1 overflow-auto flex flex-col">
             <slot />
