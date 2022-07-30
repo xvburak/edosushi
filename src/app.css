@@ -4,4 +4,9 @@
 
 html, body {
     font-size: 20px;
+    @apply tabular-nums
+}
+
+.actionbar {
+    @apply text-[2rem];
 }

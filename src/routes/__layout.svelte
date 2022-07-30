@@ -1,12 +1,11 @@
 <script>
     import "../app.css";
     import Anouncment from "$lib/components/Anouncment.svelte";
+    import ActionBar from "$lib/components/cart/ActionBar.svelte";
     import NavBar from "$lib/components/NavBar.svelte";
     import { page } from '$app/stores';
     import HPActionBar from "$lib/components/homepage/HPActionBar.svelte";
-
-
-  </script>
+ </script>
 
 
 
@@ -20,28 +19,11 @@
         </div>
         
     {:else}
-        <div class="bg-gray flex-1 overflow-auto flex flex-col">
+        <div class="bg-gray flex-1 flex flex-col ">
             <slot />
+            <ActionBar />
         </div>
     {/if}
 </section>
 
 
-
-
-
-<!-- <section class="flex flex-col h-screen">
-    <Anouncment /> 
-    <Menu />
-
-    {#if $page.url.pathname === '/'}
-        <div class="bg-hp-bg flex-1 overflow-auto">
-            <slot />
-        </div>
-    {:else}
-        <div class="bg-gray flex-1 overflow-auto flex flex-col">
-            <slot />
-        </div>
-    {/if}
-
-</section> -->
