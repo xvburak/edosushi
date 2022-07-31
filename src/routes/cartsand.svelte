@@ -1,29 +1,71 @@
 <script>
-    import {
-        itemsInCart,
-        totalPrice,
-        cartContents
-    } from '$lib/data/stores.js';
+  let cart = [];
+  let products = [{
+      id: 1,
+      name: "Apple",
+      image: "🍎",
+      price: 10,
+      quantity: 1
+    },
+    {
+      id: 2,
+      name: "Orange",
+      image: "🍊",
+      price: 11,
+      quantity: 1
+    },
+    {
+      id: 3,
+      name: "Grapes",
+      image: "🍇",
+      price: 12,
+      quantity: 1
+    },
+  ]
 
-    import Item from '$lib/components/test/Item.svelte';
 
-    let inventory = ['apples', 'leeks', 'flour', 'potatoes', 'berries'];
+  // const addToCart = (product) => {
+  //   cart = [...cart, product]
+  // }
+
+  const addToCart = (product) => {
+    for (let item of cart) {
+      if (item.id === product.id) {
+        product.quantity += 1
+        cart = cart;
+        return;
+      }
+    }
+    cart = [...cart, product]
+  }
 </script>
 
-<main>
-    <div class = "items">
-      {#each inventory as item}
-        <Item item={item}/>
-      {/each}
+<div class="product-list">
+  {#each products as product}
+    <div class="">
+      <div class="flex">
+        <p>{product.image}</p>
+        <h4>{product.name}</h4>
+      </div>
+     <p>₹{product.price}</p>
+     <button on:click={() => addToCart(product)}>Add to cart</button>
     </div>
-  
-    <p>There are { $itemsInCart } items in your cart.</p>
-    <p>Cart total: ${ $totalPrice }</p>
-    <p>Cart contents:</p>
-          
-    <ol>
-      {#each $cartContents as item}
-        <li>{item}</li>
-      {/each}
-    </ol>
-  </main>
+  {/each}
+ </div>
+
+ <div class="cart-list">
+  {#each cart as item }
+    <div class="cart-item flex">
+      <p>{item.image}</p>
+      <div>{item.quantity}</div>
+      <p>₹{item.price * item.quantity}</p>
+    </div>
+  {/each}
+ </div>
+ 
+ <style>
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+ </style>

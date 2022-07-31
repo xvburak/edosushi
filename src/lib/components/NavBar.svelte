@@ -1,13 +1,7 @@
 <script>
 	import { page } from '$app/stores';
+	import { cart } from "$lib/data/cart.js";
 
-	import { fullCount } from '$lib/data/stores.js';
-
-	let countValue;
-
-	fullCount.subscribe(value => {
-		countValue = value;
-	});
 </script>
 
 <header class="bg-white">
@@ -39,7 +33,7 @@
 			</ul>
 
 			<div class="{$page.url.pathname === '/' ? 'hidden' : ''}  flex-1 text-right">
-				<a sveltekit:prefetch href="/kosik">🛒 {countValue}</a>
+				<a sveltekit:prefetch href="/kosik">🛒 {$cart.reduce((sum, item) => sum + item.quantity, 0)}</a>
 			</div>
 
 		</div>

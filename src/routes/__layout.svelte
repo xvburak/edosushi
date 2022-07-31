@@ -17,7 +17,10 @@
             <slot />
             <HPActionBar />
         </div>
-        
+    {:else if $page.url.pathname === '/cart2'}
+        <div class="bg-gray flex-1 flex flex-col ">
+            <slot />
+        </div>
     {:else}
         <div class="bg-gray flex-1 flex flex-col ">
             <slot />

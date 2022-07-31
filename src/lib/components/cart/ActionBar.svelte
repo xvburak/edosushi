@@ -1,22 +1,21 @@
 <script>
-    import { fullCount } from '$lib/data/stores.js';
+    import {
+        cart
+    } from "$lib/data/cart.js";
 
-    let countValue;
+    $: total = $cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
-	fullCount.subscribe(value => {
-		countValue = value;
-	});
 </script>
 
-{#if countValue > 0}
+{#if total > 0}
 
 <a href="/cart2" class="w-full  bg-green text-white p-4 py-6 leading-tight flex justify-between">
     <p class="actionbar  whitespace-nowrap truncate">
-        Objednat
+        Přejít do košíku
     </p>
 
-    <p class="actionbar text-right whitespace-nowrap opacity-50">
-        {countValue} Kč
+    <p class="actionbar text-right whitespace-nowrap">
+        {total} Kč
     </p>
 </a>
 
