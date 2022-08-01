@@ -46,12 +46,3 @@ export const products = readable([{
 ])
 
 export const cart = writable([])
-export const address = writable({
-    name: "",
-    email: "",
-    phone: "",
-    street: "",
-    city: "",
-    state: "",
-    pin: "",
-})

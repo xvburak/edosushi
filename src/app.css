@@ -4,7 +4,7 @@
 
 html, body {
     font-size: 20px;
-    @apply tabular-nums
+    @apply tabular-nums antialiased
 }
 
 .actionbar {

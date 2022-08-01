@@ -33,7 +33,7 @@
 			</ul>
 
 			<div class="{$page.url.pathname === '/' ? 'hidden' : ''}  flex-1 text-right">
-				<a sveltekit:prefetch href="/kosik">🛒 {$cart.reduce((sum, item) => sum + item.quantity, 0)}</a>
+				<a sveltekit:prefetch href="/cart2">🛒 {$cart.reduce((sum, item) => sum + item.quantity, 0)}</a>
 			</div>
 
 		</div>
