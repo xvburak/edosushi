@@ -21,6 +21,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-marquee": "^0.1.4"
+		"svelte-marquee": "^0.1.4",
+		"yup": "^0.32.11"
 	}
 }

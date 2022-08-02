@@ -2,6 +2,7 @@
     import "../app.css";
     import Anouncment from "$lib/components/Anouncment.svelte";
     import ActionBar from "$lib/components/cart/ActionBar.svelte";
+    import CheckOutBar from "$lib/components/checkout/CheckOutBar.svelte";
     import NavBar from "$lib/components/NavBar.svelte";
     import { page } from '$app/stores';
     import HPActionBar from "$lib/components/homepage/HPActionBar.svelte";
@@ -19,6 +20,10 @@
         </div>
     {:else if $page.url.pathname === '/cart2'}
         <div class="bg-gray flex-1 flex flex-col ">
+            <slot />
+        </div>
+    {:else if $page.url.pathname === '/cart3'}
+        <div class="bg-green flex-1 flex flex-col justify-center">
             <slot />
         </div>
     {:else}

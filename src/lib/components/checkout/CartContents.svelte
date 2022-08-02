@@ -1,5 +1,7 @@
 <script>
+	import CheckOutBar from "$lib/components/checkout/CheckOutBar.svelte";
     import { cart } from "$lib/data/cart.js";
+	import LastTimeAdd from "$lib/components/checkout/LastTimeAdd.svelte";
 
     const minusItem = (product) => {
 		for(let item of $cart) {
@@ -26,7 +28,8 @@
 	}
 </script>
 
-<div class="w-full p-4 text-white">
+
+<div class="w-full p-4 text-white flex-1">
     <h2 class="mb-4">🛒</h2>
     {#each $cart as item }
 		{#if item.quantity > 0}
@@ -47,4 +50,7 @@
 		{/if}
 	{/each}
 
+
 </div>
+
+<LastTimeAdd />
