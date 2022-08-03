@@ -40,11 +40,13 @@
 
  
         {#each $products as product}
-          
-                <LastTimeAddTile product={product} />
-        
+            <LastTimeAddTile product={product} />
         {/each}
-        
+        <button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => addToCart(product)}>
+            <p class="actionbar  whitespace-nowrap truncate">
+                <span>+</span> Přidat obědový box
+            </p>
+        </button>
  
 
 

@@ -27,22 +27,41 @@
 {/each} -->
 
 <div class="flex space-x-2 bg-none">
-    {#each sushi as {type, contents, q}}
+    <div href="/cart1" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
+        <h3 class="title ">
+            Objednat obědový box
+
+        </h3>
+        <p class="content opacity-50">
+            (Edo Box / Maki Box / Veg Box)
+        </p>
+    </div>
+
+    <a href="/cart1" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
+        <h3 class="title ">
+            Objednat Sushi Set
+        </h3>
+        <p class="content opacity-50">
+            (Family Set (43 ks) / Party Set (69 ks))
+        </p>
+    </a>
+    
+    <!-- {#each sushi as sush}
             <HPActionBarTile>
-                <h3 slot="title">Objednat {type}</h3>
+                <h3 slot="title">Objednat {sush.title}</h3>
                 <p slot="content">(&nbsp;
-                {#each contents as {title, q}, index}
-                {#if q}
-                    {title}&nbsp;({q} ks)&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
+                {#each sush.contents as content, index}
+                {#if content.q}
+                    {content.title}&nbsp;({content.q} ks)&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
                 {:else}
-                    {title}&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
+                    {content.title}&nbsp;<span class=" last-of-type:hidden">/&nbsp;</span>
                 {/if}
                         
                 {/each}
                 )
                 </p>
             </HPActionBarTile>
-    {/each}
+    {/each} -->
 </div>
 <!-- <HPActionBarTile>
     <h3 slot="title">Objednat obědový box</h3>
