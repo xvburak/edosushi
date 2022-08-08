@@ -5,18 +5,20 @@
 </script>
 
 {#if status === 0}
-<div class="bg-red text-center py-1 text-white">
+<div class="bg-red text-center h-8 flex flex-col justify-center  py-1 text-white">
     <Marquee reverse="true" speed="slow" content="Dnes již nedoručujeme. Nově vytvořené objednávky rozvážíme následující den.&nbsp;&nbsp;&nbsp;🍣&nbsp;&nbsp;&nbsp;" />
 </div>
 
 {:else if status === 1} 
-<div class="bg-orange text-center py-1 text-white">
-    <Marquee reverse="true" speed="slow" content="Abychom zaručili čerstvost pokrmů, přijímáme objednávky den předem do 17 hodin.&nbsp;&nbsp;&nbsp;🍱&nbsp;&nbsp;&nbsp;" />
+<div class="bg-orange text-center h-8 flex flex-col justify-center py-1 text-white">
+    <div>
+        <Marquee reverse="true" speed="slow"  content="Abychom zaručili čerstvost pokrmů, přijímáme objednávky den předem do 17 hodin.&nbsp;&nbsp;&nbsp;🍱&nbsp;&nbsp;&nbsp;" />
+    </div>
 </div>
 
 
 {:else}
-<div class="bg-yellow text-center py-1 text-white">
+<div class="bg-yellow text-center h-8 flex flex-col justify-center py-1 text-white">
     <Marquee reverse="true" speed="slow" content="Nabízíme také sushi jako zpestření obchodních jednání, rodinných oslav a rautů. Dodáváme sushi na míru. &nbsp;&nbsp;&nbsp;🍱&nbsp;&nbsp;&nbsp;" />
 </div>
 

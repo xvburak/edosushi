@@ -1,11 +1,14 @@
 <script>
 	import { page } from '$app/stores';
 	import { cart } from "$lib/data/cart.js";
+    import DropdownMenu from "$lib/components/DropdownMenu.svelte";
+
 
 </script>
 
 <header class="bg-white">
-	<nav>
+	<DropdownMenu />
+	<nav class="h-10 flex flex-col justify-center">
 		<div class="{$page.url.pathname === '/' ? 'justify-center' : 'justify-between'} flex py-1 px-6 items-center">
 
 			<div class="{$page.url.pathname === '/' ? 'hidden' : ''} flex-1">

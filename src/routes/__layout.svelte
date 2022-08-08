@@ -4,6 +4,7 @@
     import ActionBar from "$lib/components/cart/ActionBar.svelte";
     import CheckOutBar from "$lib/components/checkout/CheckOutBar.svelte";
     import NavBar from "$lib/components/NavBar.svelte";
+    import MobileNav from "$lib/components/MobileNav.svelte";
     import { page } from '$app/stores';
     import HPActionBar from "$lib/components/homepage/HPActionBar.svelte";
  </script>
