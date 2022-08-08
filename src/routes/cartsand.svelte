@@ -1,71 +1,94 @@
 <script>
-  let cart = [];
-  let products = [{
-      id: 1,
-      name: "Apple",
-      image: "🍎",
-      price: 10,
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: "Orange",
-      image: "🍊",
-      price: 11,
-      quantity: 1
-    },
-    {
-      id: 3,
-      name: "Grapes",
-      image: "🍇",
-      price: 12,
-      quantity: 1
-    },
-  ]
-
-
-  // const addToCart = (product) => {
-  //   cart = [...cart, product]
-  // }
+  import { boxes } from "$lib/data/boxes.js";
+  import { cart } from "$lib/data/cart.js";
+  import CartTileTest from "$lib/components/cart/CartTileTest.svelte";
 
   const addToCart = (product) => {
-    for (let item of cart) {
-      if (item.id === product.id) {
-        product.quantity += 1
-        cart = cart;
-        return;
-      }
+        for (let item of $cart) {
+            if (item.id === product.id) {
+                product.quantity += 1
+                $cart = $cart;
+                return;
+            }
+        }
+        $cart = [...$cart, product]
+        console.log($cart)
     }
-    cart = [...cart, product]
-  }
+
+    const plusItem = (product) => {
+        for (let item of $cart) {
+            if (item.id === product.id) {
+                product.quantity += 1
+                $cart = $cart;
+                return;
+            }
+        }
+    }
+
+    const minusItem = (product) => {
+        for (let item of $cart) {
+            if (item.id === product.id) {
+                if (product.quantity > 1) {
+                    product.quantity -= 1
+                    $cart = $cart
+                } else {
+                    $cart = $cart.filter((cartItem) => cartItem != product)
+                }
+                return;
+            }
+        }
+    }
+
 </script>
 
-<div class="product-list">
-  {#each products as product}
-    <div class="">
-      <div class="flex">
-        <p>{product.image}</p>
-        <h4>{product.name}</h4>
-      </div>
-     <p>₹{product.price}</p>
-     <button on:click={() => addToCart(product)}>Add to cart</button>
-    </div>
+<div class="flex space-x-8 p-4 flex-1 ">
+  {#each $boxes as product}
+       <CartTileTest product={product} />
   {/each}
- </div>
+</div>
 
- <div class="cart-list">
-  {#each cart as item }
-    <div class="cart-item flex">
-      <p>{item.image}</p>
-      <div>{item.quantity}</div>
-      <p>₹{item.price * item.quantity}</p>
-    </div>
-  {/each}
- </div>
- 
- <style>
-  .product-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
- </style>
+<!-- {#each $edoBox as product}
+<div class="w-full text-white  leading-tight flex flex-col space-y-6 justify-between">
+  <div class="flex-1 hover:bg-white group rounded-md">
+      <div class="header mb-4 group group-hover:hidden">
+          <h1 class="title">{product.title}</h1>
+      </div>
+      <div class="parts mb-4 group-hover:hidden">
+          {#each product.contents as content}
+          <div class="flex">
+              <p>{content.produkt}</p>
+              <p>{content.ks}</p>
+              <p>{content.obsah}</p>
+          </div>
+          {/each} 
+      </div>
+
+      
+  </div>
+  <div class="flex justify-between">
+      {#if $cart.includes(product)}
+          {#each $cart as item }
+              {#if item.id == product.id}
+                  <div class="flex actionbar space-x-2">
+                      <button on:click={() => minusItem(item)}>-</button>
+                      <p>{item.quantity}</p>
+                      <button on:click={() => plusItem(item)}>+</button>
+                  </div>
+              {/if}
+          {/each}
+      {:else}
+          <div class="flex actionbar space-x-2">
+              <button>-</button>
+              <p>0</p>
+              <button on:click={() => addToCart(product)}>+</button>
+          </div>
+      {/if}
+          
+          <div class="flex actionbar space-x-2">
+              <p>{product.price} Kč</p>
+          </div>
+
+  </div>
+</div>
+
+{/each} -->
