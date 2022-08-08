@@ -10,7 +10,7 @@ const fetchBox = async () => {
     const loadedBox = data.map((data, index) => {
         return {
             title: data.title,
-            id: index + 10,
+            id: data.id,
             quantity: 1,
             price: data.price,
             contents: data.contents

@@ -35,7 +35,7 @@
 		{#if item.quantity > 0}
 		<div class="flex space-x-4">
             <div class="w-1/2">
-                <p>{item.title} <span class="opacity-50">({item.q} ks)</span></p>
+                <p>{item.title}</p>
             </div>
 			<div class="flex w-1/3 space-x-2">
 				<button on:click={() => minusItem(item)}>-</button>

@@ -50,7 +50,7 @@
             {#each product.contents as content}
                 {#if content.produkt}
                     <div class="flex space-x-2">
-                        <p>{content.ks}</p>
+                        <p>{content.ks}ks</p>
                         <div>
                             <p>{content.produkt}</p>
                             <p class="opacity-50">({content.obsah})</p>
@@ -68,7 +68,7 @@
                 {#if item.id == product.id}
                     <div class="flex actionbar space-x-2">
                         <button on:click={() => minusItem(item)}>-</button>
-                        <p>{item.quantity}</p>
+                        <p>{item.quantity} </p>
                         <button on:click={() => plusItem(item)}>+</button>
                     </div>
                 {/if}

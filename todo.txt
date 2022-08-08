@@ -1,0 +1,4 @@
+[] mobile version
+[] disable order when < 5 boxes in cart
+[] menu valid only till friday
+[] different order dates for boxes and sets
