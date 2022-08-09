@@ -10,11 +10,12 @@
 </div>
 
 {:else if status === 1} 
-<div class="bg-orange text-center h-8 flex flex-col justify-center py-1 text-white">
-    <div>
-        <Marquee reverse="true" speed="slow"  content="Abychom zaručili čerstvost pokrmů, přijímáme objednávky den předem do 17 hodin.&nbsp;&nbsp;&nbsp;🍱&nbsp;&nbsp;&nbsp;" />
+    <div class="bg-orange text-center h-8 flex flex-col justify-center py-1 text-white">
+        <div>
+            <Marquee reverse="true" speed="slow"  content="Abychom zaručili čerstvost pokrmů, přijímáme objednávky den předem do 17 hodin.&nbsp;&nbsp;&nbsp;🍱&nbsp;&nbsp;&nbsp;" />
+        </div>
     </div>
-</div>
+
 
 
 {:else}

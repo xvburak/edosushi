@@ -3,12 +3,14 @@
 	import { cart } from "$lib/data/cart.js";
     import DropdownMenu from "$lib/components/DropdownMenu.svelte";
 
-
+	let y;
 </script>
 
-<header class="bg-white">
+<svelte:window bind:scrollY={y}/>
+<div class="bg-white w-full {y >= 26 ? 'fixed top-0' : ''} z-30">
+	<header>
 	<DropdownMenu />
-	<nav class="h-10 flex flex-col justify-center">
+	<nav class="h-10 flex flex-col base justify-center">
 		<div class="{$page.url.pathname === '/' ? 'justify-center' : 'justify-between'} flex py-1 px-6 items-center">
 
 			<div class="{$page.url.pathname === '/' ? 'hidden' : ''} flex-1">
@@ -40,11 +42,17 @@
 			</div>
 
 		</div>
-	</nav>
-</header>
-
+		</nav>
+	</header>
+</div>
 <style>
 	li.active {
 		@apply text-black
 	}
+
+	@media (max-width: 767px) {
+        .base {
+            @apply hidden;
+        }
+    }
 </style>

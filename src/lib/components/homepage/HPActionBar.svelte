@@ -3,7 +3,7 @@
     import { boxes } from "$lib/data/boxes.js";
 </script>
 
-<div class="flex space-x-2 bg-none">
+<div class="flex space-x-2 bg-none base">
     <a href="/boxcart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
         <h3 class="title ">
             Objednat Obědový box
@@ -19,5 +19,13 @@
         </h3>
         <p class="content opacity-50">
             ({#each $sets as set}{#if set.id == 2}&nbsp;{set.title}{:else}&nbsp;{set.title}&nbsp;/{/if}{/each}&nbsp;)</p>
+    </a>
+</div>
+
+<div class="flex space-x-2 bg-none phone">
+    <a href="/mobilecart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
+        <h3 class="title actionbar text-center">
+            Objednat →
+        </h3>
     </a>
 </div>
