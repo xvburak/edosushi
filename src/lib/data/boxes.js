@@ -18,7 +18,6 @@ const fetchBox = async () => {
         
     });
 
-    console.log(data);
     boxes.set(loadedBox);
 };
 fetchBox();

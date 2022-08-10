@@ -40,9 +40,6 @@
             cart: document.getElementById("cart").innerHTML
         }
         send("service_jd1yt9p", "template_wagx9rf", params)
-            .then(
-            console.log(params)
-            )
             .catch(() => {
                 window.alert('Error! Try again later.');
             })

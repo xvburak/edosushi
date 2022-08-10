@@ -48,7 +48,7 @@
             <h1 class="title">{product.title}</h1>
         </div>
 
-        <div class="parts mb-4 group-hover:hidden">
+        <div class="parts mb-4">
             {#each product.contents as content}
                 {#if content.produkt}
                     <div class="flex space-x-2">

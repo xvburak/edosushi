@@ -49,11 +49,9 @@
             if(i === 0) {
                 kss += count[i].ks;
                 ings += `${count[i].obsah}`;
-                console.log(ings);
             } else {
                 kss += count[i].ks;
                 ings += `, ${count[i].obsah}`;
-                console.log(ings);
             }
             
         }   

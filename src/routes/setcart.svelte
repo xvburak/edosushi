@@ -12,7 +12,6 @@
             }
         }
         $cart = [...$cart, product]
-        console.log($cart)
     }
 
     const plusItem = (product) => {

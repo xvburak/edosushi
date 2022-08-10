@@ -18,7 +18,6 @@ const fetchSet = async () => {
         
     });
 
-    console.log(data);
     sets.set(loadedSet);
 };
 fetchSet();

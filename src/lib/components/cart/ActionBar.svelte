@@ -9,7 +9,7 @@
 </script>
 {#if $page.url.pathname === '/boxcart'}
     {#if sumka > 4}
-    <a href="/cart2" class="w-full  bg-green text-white p-4 py-6 leading-tight flex justify-between">
+    <a href="/cart2" class="w-full z-50  bg-green text-white p-4 py-6 leading-tight flex justify-between">
         <p class="actionbar  whitespace-nowrap truncate w-2/3">
             Přidat do košíku
         </p>
@@ -23,7 +23,7 @@
 
     {:else}
 
-    <div href="/cart1" class="w-full bg-red text-white p-4 py-6 leading-tight flex justify-between">
+    <div href="/cart1" class="w-full z-50  bg-red text-white p-4 py-6 leading-tight flex justify-between">
         <p class="actionbar opacity-50 whitespace-nowrap truncate w-2/3">
             Pro objednání, přidejte ještě {5 - sumka} ks
         </p>
@@ -38,7 +38,7 @@
     {/if}
 {:else if $page.url.pathname === '/mobilecart'}
     {#if sumka > 4 || ids === '1' || ids === '2'}
-    <div class="fixed w-full overflow-hidden bottom-0">
+    <div class="fixed w-full z-50  overflow-hidden bottom-0">
         <a href="/cart2" class="w-full  bg-green text-white p-4 py-6 leading-tight flex justify-between">
             <p class="actionbar  whitespace-nowrap truncate">
                 Přidat 
@@ -50,7 +50,7 @@
     </div>
     {:else}
 
-    <div class="fixed w-full bottom-0">
+    <div class="fixed w-full z-50  bottom-0">
         <div href="/cart1" class="w-full bg-red text-white p-4 py-6 leading-tight flex justify-between">
             <p class="actionbar opacity-50 whitespace-nowrap truncate w-2/3">
                ??aspon  5 boxů / 1 set
@@ -67,7 +67,7 @@
 {:else}
     {#if total > 0}
 
-    <a href="/cart2" class="w-full  bg-green text-white p-4 py-6 leading-tight flex justify-between">
+    <a href="/cart2" class="w-full z-50   bg-green text-white p-4 py-6 leading-tight flex justify-between">
         <p class="actionbar  whitespace-nowrap truncate">
             Přidat do košíku
         </p>
@@ -79,7 +79,7 @@
 
     {:else}
 
-    <div href="/cart1" class="w-full bg-red text-white p-4 py-6 leading-tight flex justify-between">
+    <div href="/cart1" class="w-full z-50  bg-red text-white p-4 py-6 leading-tight flex justify-between">
         <p class="actionbar opacity-50 whitespace-nowrap truncate">
             Pro objednání, prosím, vyberte alespoň jeden produkt
         </p>
