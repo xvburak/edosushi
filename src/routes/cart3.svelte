@@ -13,7 +13,7 @@
 <div class="mx-auto text-left text-4xl max-w-screen-md flex space-x-4 items-center text-white">
 
     <div class="mix-blend-multiply">
-        <img class="" src="/icons8-checkmark.gif" width="200" alt="404 image" />
+        <img  src="/icons8-checkmark.gif" width="200" alt="checkout info" />
     </div>
 
 

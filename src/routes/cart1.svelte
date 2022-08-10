@@ -1,5 +1,5 @@
 <script>
-    import CartTile from "$lib/components/cart/cartTile.svelte";
+    import CartTile from "$lib/components/cart/CartTile.svelte";
     import { products, cart } from "$lib/data/cart.js";
 
 </script>

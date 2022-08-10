@@ -42,9 +42,9 @@
 
 
 <div class="w-full text-white  leading-tight flex flex-col space-y-6 justify-between border-b p-4 md:border-none md:p-0">
-    <div class="flex-1 hover:bg-white group rounded-md">
+    <div class="flex-1  group rounded-md">
 
-        <div class="header mb-4 group group-hover:hidden">
+        <div class="header mb-4 group">
             <h1 class="title">{product.title}</h1>
         </div>
 

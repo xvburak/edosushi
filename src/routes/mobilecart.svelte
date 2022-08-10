@@ -42,7 +42,7 @@
 
 </script>
 
-<div class="md:flex md:space-x-8  md:p-4 flex-1 mb-20">
+<div class="md:flex md:space-x-8  md:p-4 flex-1 mb-[5.5rem]">
     <div class="bg-yellow text-center h-8 sticky top-12 z-20 justify-center py-1 text-white">
         <h2>Boxy</h2>
     </div>

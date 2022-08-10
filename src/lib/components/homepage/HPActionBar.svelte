@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex space-x-2 bg-none base">
-    <a href="/boxcart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
+    <a sveltekit:prefetch href="/boxcart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
         <h3 class="title ">
             Objednat Obědový box
 
@@ -13,7 +13,7 @@
             ({#each $boxes as box}{#if box.id == 12}&nbsp;{box.title}{:else}&nbsp;{box.title} / {/if}{/each}&nbsp;)</p>
     </a>
 
-    <a href="/setcart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
+    <a sveltekit:prefetch href="/setcart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
         <h3 class="title ">
             Objednat Sushi Set
         </h3>
@@ -23,7 +23,7 @@
 </div>
 
 <div class="flex space-x-2 bg-none phone">
-    <a href="/mobilecart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
+    <a sveltekit:prefetch href="/mobilecart" class="w-full bg-green text-white p-4 py-6 leading-tight flex flex-col justify-center">
         <h3 class="title actionbar text-center">
             Objednat →
         </h3>
