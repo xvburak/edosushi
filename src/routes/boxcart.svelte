@@ -1,47 +1,17 @@
 <script>
   import { boxes } from "$lib/data/boxes.js";
-  import { cart } from "$lib/data/cart.js";
   import CartTileBox from "$lib/components/cart/CartTileBox.svelte";
-
-  const addToCart = (product) => {
-        for (let item of $cart) {
-            if (item.id === product.id) {
-                product.quantity += 1
-                $cart = $cart;
-                return;
-            }
-        }
-        $cart = [...$cart, product]
-    }
-
-    const plusItem = (product) => {
-        for (let item of $cart) {
-            if (item.id === product.id) {
-                product.quantity += 1
-                $cart = $cart;
-                return;
-            }
-        }
-    }
-
-    const minusItem = (product) => {
-        for (let item of $cart) {
-            if (item.id === product.id) {
-                if (product.quantity > 1) {
-                    product.quantity -= 1
-                    $cart = $cart
-                } else {
-                    $cart = $cart.filter((cartItem) => cartItem != product)
-                }
-                return;
-            }
-        }
-    }
-
+  import CartTileBoxMobile from "$lib/components/cart/CartTileBoxMobile.svelte";
 </script>
 
-<div class="flex space-x-8 p-4 flex-1 ">
+<div class="flex space-x-8 p-4 flex-1 base">
   {#each $boxes as product}
        <CartTileBox product={product} />
   {/each}
 </div>
+
+<div class="flex-1 phone pb-[5.5rem]">
+    {#each $boxes as product}
+         <CartTileBoxMobile product={product} />
+    {/each}
+  </div>
