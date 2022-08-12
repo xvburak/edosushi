@@ -1,11 +1,18 @@
 <script>
     import { cart } from "$lib/data/cart.js";
     import { page } from '$app/stores';
+    import { boxes } from "$lib/data/boxes.js";
+    export let product
 
     $: total = $cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
     $: sumka = $cart.reduce((sum, item) => sum + item.quantity, 0)
     $: ids = $cart.reduce((sum, item) => item.id, 0)
 
+    $: boxsumka = $cart.reduce((sum, item) => sum + item.quantity, 0)
+    $: setsumka = $cart.reduce((sum, item) => sum + item.quantity, 0)
+
+
+    
 </script>
 {#if $page.url.pathname === '/boxcart'}
     {#if sumka > 4}

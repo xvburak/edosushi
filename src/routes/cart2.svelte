@@ -1,7 +1,6 @@
 <script>
     import CartContents from "$lib/components/checkout/CartContents.svelte";
-    import Form from "$lib/components/checkout/FormTest.svelte";
-    import CheckOutBar from "$lib/components/checkout/CheckOutBar.svelte";
+    import FormTest from "$lib/components/checkout/FormTest.svelte";
 </script>
 
 <div class="flex flex-1 ">
@@ -10,7 +9,6 @@
     </div>
 
     <div class="flex flex-col w-1/2">
-        <Form />
-        <CheckOutBar />
+        <FormTest />
     </div>
  </div>

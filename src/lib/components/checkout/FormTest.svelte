@@ -1,12 +1,8 @@
 <script>
-	// importing EmailJS
-	import {
-		init,
-		sendForm,
-		send
-	} from 'emailjs-com';
-	init("dMiJTl644Kugx1an4");
-
+    import sheetdb from 'sheetdb-node';
+    var client = sheetdb({
+        address: 'n4q0i0acx1qeo'
+    });
 	// importing Stores
 	import {
 		cart
@@ -27,24 +23,25 @@
 	function sendMessage() {	
 		let day = document.getElementById("omgday").innerText;
 		let pay = document.getElementById("omgpay").innerText;
+        let today = new Date();
+        var params = {
+            datum: today,
+            jmeno: $address.name,
+            email: $address.email,
+            adresa: $address.adresa,
+            tel: $address.phone,
+            doruceni: document.getElementById("day").value,
+            platba: document.getElementById("pay").value,
+            obsah: document.getElementById("cart").innerHTML
+        }
+        console.log(params);
+        client.create(params, "Objednavky").then(function (data) {
+            console.log(data);
+        }, function (err) {
+        console.log(err);
+    });
 
-		var params = {
-			name: $address.name,
-			email: $address.email,
-			adresa: $address.adresa,
-			phone: $address.phone,
-			day: day,
-			pay: pay,
-			cart: document.getElementById("cart").innerHTML
-		}
-		send("service_jd1yt9p", "template_wagx9rf", params)
-			.then(
-				window.location.href = "/cart3"
-			)
-			.catch(() => {
-				window.alert('Error! Try again later.');
-			})
-	}
+    }
 
 
 	// Define schema with Yup
@@ -146,7 +143,7 @@
 
 	{ #each $cart as item }
 		{#if item.quantity > 0}
-			{item.title}{".".repeat(15 - item.title.length)}{item.price}{".".repeat(15 - item.price.toString.length)}{item.quantity}&nbsp;&nbsp;&nbsp;&nbsp;{item.price * item.quantity}<br>&nbsp;
+			{item.title}<br>{item.price}{item.quantity}<br>{item.price * item.quantity}<br>
 		{/if}
 	{/each}
 	{total}

@@ -123,3 +123,38 @@
         </p>
     </a>
 </div>
+
+
+
+
+
+
+
+
+    <!-- // import sheetdb from 'sheetdb-node';
+
+    // var client = sheetdb({
+    //     address: 'n4q0i0acx1qeo'
+    // });
+
+    // client.read({
+    //     sheet: "Objednavky"
+    // }).then(function (data) {
+    //     console.log(data);
+    // }, function (err) {
+    //     console.log(err);
+    // });
+ 
+    // let rows = [{
+    //     datum: "1.1.2000",
+    //     jmeno: "vasil",
+    //     adresa: "kaplickeho",
+    //     tel: "788667556",
+    //     email: "burak#gmail.com",
+    //     platba:
+    //     doruceni
+    //     obsah
+    //     },
+       
+    //  -->
+    

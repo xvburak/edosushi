@@ -4,7 +4,8 @@
     } from "$lib/data/cart.js";
     export let product
 
-    const addToCart = (product) => {
+
+        const addToCart = (product) => {
         for (let item of $cart) {
             if (item.id === product.id) {
                 product.quantity += 1
@@ -14,6 +15,8 @@
         }
         $cart = [...$cart, product]
     }
+
+    
 
     const plusItem = (product) => {
         for (let item of $cart) {
@@ -40,6 +43,7 @@
     }
 
 </script>
+
 
 
 <div class="w-full text-white  leading-tight flex flex-col space-y-6 justify-between">
