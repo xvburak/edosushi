@@ -1,48 +1,116 @@
 <script>
 	import CheckOutBar from "$lib/components/checkout/CheckOutBar.svelte";
-    import { cart } from "$lib/data/cart.js";
+    import { boxcart } from "$lib/data/boxcart.js";
+	import { boxes } from "$lib/data/boxes.js";
+
+	import { setcart } from "$lib/data/setcart.js";
+	import { sets } from "$lib/data/sets.js";
+
 	import LastTimeAdd from "$lib/components/checkout/LastTimeAdd.svelte";
 
-    const minusItem = (product) => {
-		for(let item of $cart) {
+	const boxAddToCart = (product) => {
+        for (let item of $boxcart) {
+            if (item.id === product.id) {
+                product.quantity += 1
+                $boxcart = $boxcart;
+                return;
+            }
+        }
+        $boxcart = [...$boxcart, product]
+    }
+
+    const boxMinusItem = (product) => {
+		for(let item of $boxcart) {
 				if(item.id === product.id) {
 					if(product.quantity > 1 ) {
 							product.quantity -= 1
-							$cart = $cart
+							$boxcart = $boxcart
 					} else {
-							$cart = $cart.filter((cartItem) => cartItem != product)
+							$boxcart = $boxcart.filter((cartItem) => cartItem != product)
+					}
+					return;
+				}
+		}
+	}
+
+	
+	const boxPlusItem = (product) => {
+			for(let item of $boxcart) {
+							if(item.id === product.id) {
+								product.quantity += 1
+								$boxcart = $boxcart;
+								return;
+							}
+					}
+	}
+
+	const setAddToCart = (product) => {
+        for (let item of $setcart) {
+            if (item.id === product.id) {
+                product.quantity += 1
+                $setcart = $setcart;
+                return;
+            }
+        }
+        $setcart = [...$setcart, product]
+    }
+
+	const setMinusItem = (product) => {
+		for(let item of $setcart) {
+				if(item.id === product.id) {
+					if(product.quantity > 1 ) {
+							product.quantity -= 1
+							$setcart = $setcart
+					} else {
+							$setcart = $setcart.filter((cartItem) => cartItem != product)
 					}
 					return;
 				}
 		}
 	}
 	
-	const plusItem = (product) => {
-			for(let item of $cart) {
+	const setPlusItem = (product) => {
+			for(let item of $setcart) {
 							if(item.id === product.id) {
 								product.quantity += 1
-								$cart = $cart;
+								$setcart = $setcart;
 								return;
 							}
 					}
 	}
 
-	
 </script>
-
 
 <div class="w-full p-4 text-white flex-1">
     <h2 class="mb-4">🛒</h2>
-    {#each $cart as item }
+    {#each $boxcart as item }
 		{#if item.quantity > 0}
 		<div class="flex space-x-4">
             <div class="w-1/2">
                 <p>{item.title}</p>
             </div>
 			<div class="flex w-1/3 space-x-2">
-				<button on:click={() => minusItem(item)}>-</button>
+				<button on:click={() => boxMinusItem(item)}>-</button>
                 <p>{item.quantity} ks</p>
-                <button on:click={() => plusItem(item)}>+</button>
+                <button on:click={() => boxPlusItem(item)}>+</button>
+			</div>
+            <div class="w-1/3 ">
+                <p>{item.price * item.quantity} Kč</p>
+            </div>
+			
+		</div>
+		{/if}
+	{/each}
+	{#each $setcart as item }
+		{#if item.quantity > 0}
+		<div class="flex space-x-4">
+            <div class="w-1/2">
+                <p>{item.title}</p>
+            </div>
+			<div class="flex w-1/3 space-x-2">
+				<button on:click={() => setMinusItem(item)}>-</button>
+                <p>{item.quantity} ks</p>
+                <button on:click={() => setPlusItem(item)}>+</button>
 			</div>
             <div class="w-1/3 ">
                 <p>{item.price * item.quantity} Kč</p>
@@ -54,3 +122,49 @@
 </div>
 
 <!-- <LastTimeAdd /> -->
+
+<!-- {#if $setcart = "undefined"}
+	{#each $sets as product}
+		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => setAddToCart(product)}>
+			<p class="actionbar  whitespace-nowrap truncate">
+				<span>+</span> {product.title}
+			</p>
+		</button>
+	{/each}
+	{#each $boxes as product}
+		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => boxAddToCart(product)}>
+			<p class="actionbar  whitespace-nowrap truncate">
+				<span>+</span> Přidat Obědový box
+			</p>
+		</button>
+	{/each}
+
+{:else if $boxcart = "undefined"}
+	
+{/if} -->
+
+{#each $boxes as product}
+	<!-- svelte-ignore empty-block -->
+	{#if $boxcart.includes(product)}
+
+	{:else}
+		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => boxAddToCart(product)}>
+			<p class="actionbar  whitespace-nowrap truncate">
+				<span>+</span> Přidat {product.title}
+			</p>
+		</button>
+	{/if}
+{/each}
+
+{#each $sets as product}
+	<!-- svelte-ignore empty-block -->
+	{#if $setcart.includes(product)}
+
+	{:else}
+		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => setAddToCart(product)}>
+			<p class="actionbar  whitespace-nowrap truncate">
+				<span>+</span> Přidat {product.title}
+			</p>
+		</button>
+	{/if}
+{/each}

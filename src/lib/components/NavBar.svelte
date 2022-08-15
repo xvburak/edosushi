@@ -1,9 +1,14 @@
 <script>
 	import { page } from '$app/stores';
-	import { cart } from "$lib/data/cart.js";
+	import { setcart } from "$lib/data/setcart.js";
+	import { boxcart } from "$lib/data/boxcart.js";
     import DropdownMenu from "$lib/components/DropdownMenu.svelte";
 
 	let y;
+
+	$: boxsum = $boxcart.reduce((sum, item) => sum + item.quantity, 0)
+    $: setsum = $setcart.reduce((sum, item) => sum + item.quantity, 0)
+	$: fullsum = setsum + boxsum
 </script>
 
 <svelte:window bind:scrollY={y}/>
@@ -38,7 +43,7 @@
 			</ul>
 
 			<div class="{$page.url.pathname === '/' ? 'hidden' : ''}  flex-1 text-right">
-				<a sveltekit:prefetch href="/cart2">🛒 {$cart.reduce((sum, item) => sum + item.quantity, 0)}</a>
+				<a sveltekit:prefetch href="/cart2">🛒 {fullsum}</a>
 			</div>
 
 		</div>

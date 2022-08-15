@@ -2,6 +2,7 @@
     import {
         cart
     } from "$lib/data/cart.js";
+    
     export let product
 
 

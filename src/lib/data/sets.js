@@ -10,7 +10,7 @@ const fetchSet = async () => {
     const loadedSet = data.map((data, index) => {
         return {
             title: data.title,
-            id: data.id,
+            id: `set${index}`,
             quantity: 1,
             price: data.price,
             contents: data.contents

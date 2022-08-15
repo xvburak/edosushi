@@ -1,11 +1,16 @@
 <script>
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
-    import { cart } from "$lib/data/cart.js";
+    import { boxcart } from "$lib/data/boxcart.js";
+    import { setcart } from "$lib/data/setcart.js";
     import { scale } from 'svelte/transition';
 
     let show = false; // menu state
     let menu = null; // menu wrapper DOM reference
+
+    $: boxsum = $boxcart.reduce((sum, item) => sum + item.quantity, 0)
+    $: setsum = $setcart.reduce((sum, item) => sum + item.quantity, 0)
+	$: fullsum = setsum + boxsum
 
     onMount(() => {
 
@@ -59,7 +64,7 @@
               
                 
                 <div class="w-1/3  text-right">
-                    <a sveltekit:prefetch href="/cart2">🛒 {$cart.reduce((sum, item) => sum + item.quantity, 0)}</a>
+                    <a sveltekit:prefetch href="/cart2">🛒 {fullsum}</a>
                 </div>
             </div>
             

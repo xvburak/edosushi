@@ -4,14 +4,18 @@
         address: 'n4q0i0acx1qeo'
     });
 	// importing Stores
-	import {
-		cart
-	} from "$lib/data/cart.js";
+	import { boxcart } from "$lib/data/boxcart.js";
+	import { setcart } from "$lib/data/setcart.js";
+
+
 	import {
 		address
 	} from "$lib/data/address.js";
 
-	$: total = $cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+	$: boxtotal = $boxcart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+	$: settotal = $setcart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+
+	$: fulltotal = boxtotal + settotal
 
 	let pay = "Hotovost na místě";
 	let day = "Pondělí";
@@ -25,14 +29,14 @@
 		let pay = document.getElementById("omgpay").innerText;
         let today = new Date();
         var params = {
-            datum: today,
+            datum: today.toLocaleDateString(),
             jmeno: $address.name,
             email: $address.email,
             adresa: $address.adresa,
             tel: $address.phone,
             doruceni: document.getElementById("day").value,
             platba: document.getElementById("pay").value,
-            obsah: document.getElementById("cart").innerHTML
+            obsah: document.getElementById("cart").textContent
         }
         console.log(params);
         client.create(params, "Objednavky").then(function (data) {
@@ -42,47 +46,9 @@
     });
 
     }
-
-
-	// Define schema with Yup
-	import * as yup from 'yup';
-
-	const schema = yup.object().shape({
-		name: yup.string().required('Zadejte jméno'),
-		address: yup.string().required('Zadejte adresu doručení'),
-		phone: yup.string().required('Zadejte telefoní číslo'),
-		email: yup.string().required('Zadejte e-mailovou adresu').email("Zkuste to znovu"),
-	});
-
-	let values = {};
-	let errors = {};
-
-	async function submitHandler() {
-		try {
-			// `abortEarly: false` to get all the errors
-			await schema.validate(values, {
-				abortEarly: false
-			});
-			alert(JSON.stringify(values, null, 2));
-			errors = {};
-			sendMessage();
-
-		} catch (err) {
-			errors = extractErrors(err);
-		}
-	}
-
-	function extractErrors(err) {
-		return err.inner.reduce((acc, err) => {
-			return {
-				...acc,
-				[err.path]: err.message
-			};
-		}, {});
-	}
 </script>
 
-	<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && $cart.length > 0} class="bg-red p-4 flex-1 text-white">
+	<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && $boxcart.length > 0 && $setcart > 0} class="bg-red p-4 flex-1 text-white">
 
 	<form name="contactForm" on:submit|preventDefault={sendMessage}>
 		<div class="mb-4">
@@ -90,20 +56,17 @@
 			<div class="flex">
 				<input class="w-full" type="text" name="name" id="name" bind:value={$address.name}
 					placeholder="Jméno a příjmení / Název firmy" />
-				<p class="error">{#if errors.name}{errors.name}{/if}</p> 
+
 			</div>
 			<div class="flex">
 				<input class="w-full" type="text" name="address" id="address" bind:value={$address.adresa} placeholder="Adresa doručení" />
-				<p class="error">{#if errors.address}{errors.address}{/if}</p> 
 			</div>
 			<div class="flex">
 				<input class="w-full" type="text" name="phone" id="phone" bind:value={$address.phone} placeholder="Telefonní číslo" />
-				<p class="error">{#if errors.phone}{errors.phone}{/if}</p> 
 			</div>
 			
 			<div class="flex">
 				<input class="w-full" type="text" name="email" id="email" bind:value={$address.email} placeholder="E-mailová adresa" />
-				<p class="error">{#if errors.email}{errors.email}{/if}</p>
 			</div>
 			
 		</div>
@@ -141,12 +104,22 @@
 
 <div id="cart" name="cart" class="hidden">
 
-	{ #each $cart as item }
-		{#if item.quantity > 0}
-			{item.title}<br>{item.price}{item.quantity}<br>{item.price * item.quantity}<br>
-		{/if}
-	{/each}
-	{total}
+<p>&#8203;/{ #each $boxcart as item }{#if item.quantity > 0}
+		/ {item.title}: {item.quantity} ks /{/if}
+		{/each}
+		</p>
+	
+<p>&#8203;
+/{ #each $setcart as item }{#if item.quantity > 0}
+		/ {item.title}: {item.quantity} ks /{/if}
+		{/each}
+	</p>
+
+<p class="underline">
+&#8203;
+<span>Celkem: {fulltotal}Kč </span>
+</p>
+
 </div>
 
 <!-- <div class="mt-8">
@@ -154,7 +127,7 @@
 </div> -->
 
 <div class=""> 
-	{#if $address.name && $address.adresa && $address.email && $address.phone && $cart.length > 0}
+	{#if $address.name && $address.adresa && $address.email && $address.phone && $boxcart.length > 0 && $setcart.length > 0}
 
 	<button class="w-full border-t border-gray  bg-green text-white p-4 py-6 leading-tight flex justify-between" on:click={ sendMessage }>
 		<p class="actionbar  whitespace-nowrap truncate">
@@ -162,7 +135,7 @@
 		</p>
 	
 		<p class="actionbar text-right whitespace-nowrap">
-			{total} Kč
+			{fulltotal} Kč
 		</p>
 	</button>
 
@@ -174,7 +147,7 @@
     </p>
 
     <p class="actionbar opacity-50 text-right whitespace-nowrap">
-        {total} Kč
+        {fulltotal} Kč
     </p>
 </div>
     

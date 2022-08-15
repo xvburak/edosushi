@@ -10,13 +10,14 @@ const fetchBox = async () => {
     const loadedBox = data.map((data, index) => {
         return {
             title: data.title,
-            id: data.id,
+            id: `box${index}`,
             quantity: 1,
             price: data.price,
             contents: data.contents
         };
         
     });
+
 
     boxes.set(loadedBox);
 };

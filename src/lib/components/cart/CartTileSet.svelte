@@ -1,39 +1,39 @@
 <script>
     import {
-        cart
-    } from "$lib/data/cart.js";
+        setcart
+    } from "$lib/data/setcart.js";
 
     export let product
 
     const addToCart = (product) => {
-        for (let item of $cart) {
+        for (let item of $setcart) {
             if (item.id === product.id) {
                 product.quantity += 1
-                $cart = $cart;
+                $setcart = $setcart;
                 return;
             }
         }
-        $cart = [...$cart, product]
+        $setcart = [...$setcart, product]
     }
 
     const plusItem = (product) => {
-        for (let item of $cart) {
+        for (let item of $setcart) {
             if (item.id === product.id) {
                 product.quantity += 1
-                $cart = $cart;
+                $setcart = $setcart;
                 return;
             }
         }
     }
 
     const minusItem = (product) => {
-        for (let item of $cart) {
+        for (let item of $setcart) {
             if (item.id === product.id) {
                 if (product.quantity > 1) {
                     product.quantity -= 1
-                    $cart = $cart
+                    $setcart = $setcart
                 } else {
-                    $cart = $cart.filter((cartItem) => cartItem != product)
+                    $setcart = $setcart.filter((cartItem) => cartItem != product)
                 }
                 return;
             }
@@ -84,8 +84,8 @@
         
     </div>
     <div class="flex justify-between">
-        {#if $cart.includes(product)}
-            {#each $cart as item }
+        {#if $setcart.includes(product)}
+            {#each $setcart as item }
                 {#if item.id == product.id}
                     <div class="flex actionbar space-x-2">
                         <button on:click={() => minusItem(item)}>-</button>
