@@ -14,6 +14,9 @@
 
 	$: boxtotal = $boxcart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 	$: settotal = $setcart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+	
+	$: boxsumka = $boxcart.reduce((sum, item) => sum + item.quantity, 0)
+
 
 	$: fulltotal = boxtotal + settotal
 
@@ -48,7 +51,7 @@
     }
 </script>
 
-	<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && $boxcart.length > 0 && $setcart > 0} class="bg-red p-4 flex-1 text-white">
+	<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && (boxsumka > 4 || $setcart.length > 0)} class="bg-red p-4 flex-1 text-white">
 
 	<form name="contactForm" on:submit|preventDefault={sendMessage}>
 		<div class="mb-4">
@@ -127,7 +130,7 @@
 </div> -->
 
 <div class=""> 
-	{#if $address.name && $address.adresa && $address.email && $address.phone && $boxcart.length > 0 && $setcart.length > 0}
+	{#if $address.name && $address.adresa && $address.email && $address.phone && (boxsumka > 4 || $setcart.length > 0)}
 
 	<button class="w-full border-t border-gray  bg-green text-white p-4 py-6 leading-tight flex justify-between" on:click={ sendMessage }>
 		<p class="actionbar  whitespace-nowrap truncate">
