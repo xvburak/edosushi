@@ -8,8 +8,16 @@
     import HPActionBar from "$lib/components/homepage/HPActionBar.svelte";
  </script>
 
+{#if $page.url.pathname === '/onas'}
+<section class="bg-green flex flex-col h-screen">
+    <Anouncment /> 
+    <NavBar />
+       
+            <slot />
+        
+</section>
 
-
+{:else}
 <section class="flex flex-col h-screen">
     <Anouncment /> 
     <NavBar />
@@ -20,6 +28,10 @@
         </div>
     {:else if $page.url.pathname === '/cart2' || $page.url.pathname === '/mobilecheckout'}
         <div class="bg-gray flex-1 flex flex-col ">
+            <slot />
+        </div>
+    {:else if $page.url.pathname === '/kontakt'|| $page.url.pathname === '/rozvoz' }
+        <div class="bg-gray flex-1 flex flex-col h-full">
             <slot />
         </div>
     {:else if $page.url.pathname === '/cart3'}
@@ -33,5 +45,9 @@
         </div>
     {/if}
 </section>
+
+{/if}
+
+
 
 

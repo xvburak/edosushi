@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html, body {
-    font-size: 16px;
+    font-size: 17px;
     @apply tabular-nums antialiased
 }
 
@@ -26,19 +26,19 @@ html, body {
 /* -------------------------------- */
 @media (min-width: 1024px) {
     html, body {
-        font-size: 18px;
+        font-size: 19px;
     }
 }
 
 @media (min-width: 1280px) {
     html, body {
-        font-size: 20px;
+        font-size: 21px;
     }
 }
 
 @media (min-width: 1536px) {
     html, body {
-        font-size: 22px;
+        font-size: 23px;
     }
 }
 
