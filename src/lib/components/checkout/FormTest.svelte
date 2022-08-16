@@ -1,12 +1,17 @@
 <script>
-    import sheetdb from 'sheetdb-node';
-    var client = sheetdb({
-        address: 'n4q0i0acx1qeo'
-    });
+	import sheetdb from 'sheetdb-node';
+	var client = sheetdb({
+		address: 'n4q0i0acx1qeo'
+	});
 	// importing Stores
-	import { boxcart } from "$lib/data/boxcart.js";
-	import { setcart } from "$lib/data/setcart.js";
+	import {
+		boxcart
+	} from "$lib/data/boxcart.js";
+	import {
+		setcart
+	} from "$lib/data/setcart.js";
 
+	import { dage, methods } from "$lib/data/stores.js" 
 
 	import {
 		address
@@ -14,96 +19,157 @@
 
 	$: boxtotal = $boxcart.reduce((sum, item) => sum + item.price * item.quantity, 0)
 	$: settotal = $setcart.reduce((sum, item) => sum + item.price * item.quantity, 0)
-	
 	$: boxsumka = $boxcart.reduce((sum, item) => sum + item.quantity, 0)
-
-
 	$: fulltotal = boxtotal + settotal
 
-	let pay = "Hotovost na místě";
-	let day = "Pondělí";
+	import DateInput from '$lib/components/checkout/DateInput.svelte'
+	let date = new Date()
 
-	let days = ["Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota", "Neděle"];
-	let pays = ["Hotovost na místě", "Platba kartou na místě", "Platba převodem"];
+	let selectedDay = 'Středa';
+	let selectedPay = 'Hotovost na místě';
 
-	// EmailJS function
-	function sendMessage() {	
-		let day = document.getElementById("omgday").innerText;
-		let pay = document.getElementById("omgpay").innerText;
-        let today = new Date();
-        var params = {
-            datum: today.toLocaleDateString(),
-            jmeno: $address.name,
-            email: $address.email,
-            adresa: $address.adresa,
-            tel: $address.phone,
-            doruceni: document.getElementById("day").value,
-            platba: document.getElementById("pay").value,
-            obsah: document.getElementById("cart").textContent
-        }
-        console.log(params);
-        client.create(params, "Objednavky").then(function (data) {
-            console.log(data);
-        }, function (err) {
-        console.log(err);
-    });
+	function sendMessage() {
+		const today = new Date();
+		const options = { weekday: 'short', month: 'short', day: 'numeric' };
+		const todayName = today.toLocaleDateString('cs-CS', options);
+		let doruc = '';
 
-    }
+		if ($boxcart.length === 0) {
+			doruc = date.toLocaleDateString('cs-CS', options);
+		} else {
+			doruc = selectedDay;
+		}
+
+		var params = {
+			datum: todayName,
+			jmeno: $address.name,
+			email: $address.email,
+			adresa: $address.adresa,
+			tel: $address.phone,
+			doruceni: doruc,
+			platba: selectedPay,
+			obsah: document.getElementById("cart").textContent
+		}
+		client.create(params, "Objednavky")
+			.then(function (data) {
+				console.log(data);
+				window.location.href = "/cart3";
+			}, function (err) {
+				console.log(err);
+			});
+
+	}
+
+
+	// Define schema with Yup
+	import * as yup from 'yup';
+
+	const schema = yup.object().shape({
+		name: yup.string().required('Zadejte jméno'),
+		address: yup.string().required('Zadejte adresu doručení'),
+		phone: yup.string().required('Zadejte telefoní číslo'),
+		email: yup.string().required('Zadejte e-mailovou adresu').email("Zkuste to znovu"),
+	});
+
+	let values = {};
+	let errors = {};
+
+	async function submitHandler() {
+		try {
+			// `abortEarly: false` to get all the errors
+			await schema.validate(values, {
+				abortEarly: false
+			});
+			alert(JSON.stringify(values, null, 2));
+			errors = {};
+			sendMessage();
+
+		} catch (err) {
+			errors = extractErrors(err);
+		}
+	}
+
+	function extractErrors(err) {
+		return err.inner.reduce((acc, err) => {
+			return {
+				...acc,
+				[err.path]: err.message
+			};
+		}, {});
+	}
 </script>
 
-	<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && (boxsumka > 4 || $setcart.length > 0)} class="bg-red p-4 flex-1 text-white">
 
-	<form name="contactForm" on:submit|preventDefault={sendMessage}>
+
+<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && (boxsumka> 4 ||
+	$setcart.length > 0)} class="bg-red p-4 flex-1 text-white">
+
+	<form name="contactForm" on:submit|preventDefault={submitHandler}>
 		<div class="mb-4">
 			<h3>Pro objednávku, prosím, vyplňte následující informace:</h3>
 			<div class="flex">
 				<input class="w-full" type="text" name="name" id="name" bind:value={$address.name}
 					placeholder="Jméno a příjmení / Název firmy" />
-
+				<p class="error">{#if errors.name}{errors.name}{/if}</p> 
 			</div>
 			<div class="flex">
 				<input class="w-full" type="text" name="address" id="address" bind:value={$address.adresa} placeholder="Adresa doručení" />
+				<p class="error">{#if errors.address}{errors.address}{/if}</p> 
 			</div>
 			<div class="flex">
 				<input class="w-full" type="text" name="phone" id="phone" bind:value={$address.phone} placeholder="Telefonní číslo" />
+				<p class="error">{#if errors.phone}{errors.phone}{/if}</p> 
 			</div>
 			
 			<div class="flex">
 				<input class="w-full" type="text" name="email" id="email" bind:value={$address.email} placeholder="E-mailová adresa" />
+				<p class="error">{#if errors.email}{errors.email}{/if}</p>
 			</div>
 			
 		</div>
 		<div class="mb-4">
 			<h3>Zvolte způsob placení:</h3>
 			<div class="flex flex-wrap space-x-2">
-				{ #each pays as payname (payname) }
+				{ #each $methods as method}
 				<label>
-					<input name="pay select" id="pay" class="peer appearance-none -mr-1" type=radio bind:group={pay} value={payname}>
-					<span id="payname" class="opacity-50 peer-checked:opacity-100">{payname}</span>
+					<input name="pay select" id="pay" class="peer appearance-none -mr-1" type=radio bind:group={selectedPay} value={method}>
+					<span id="payname" class="opacity-50 peer-checked:opacity-100">{method}</span>
 				</label>
 					
        		 {/each}
 			</div>	
 		</div>
-		<div class="mb-4">
-			<h3>Vyberte den doručení:</h3>
-			<div class="flex flex-wrap space-x-2">
-				{ #each days as dayname (dayname) }
-					<label>
-						<input name="day select" id="day" class="peer appearance-none -mr-1" type=radio bind:group={day} value={dayname}>
-						<span id="dayname" class="opacity-50 peer-checked:opacity-100">{dayname}</span>
-					</label>		
-       			 {/each}	
+
+		{#if $boxcart.length === 0}
+			<div class="mb-4">
+				<h3>Vyberte datum doručení:</h3>
+				<div class="flex flex-wrap space-x-2">
+						<DateInput bind:date />
+				</div>
 			</div>
-		</div>
+		{:else}
+			<div class="mb-4">
+				<h3>Vyberte den doručení:</h3>
+				<div class="flex flex-wrap space-x-2">
+					{#each $dage as dag}
+						<label>
+							<input name="day select" id="day" class="peer appearance-none -mr-1" type=radio bind:group={selectedDay} value={dag}>
+							<span id="dayname" class="opacity-50 peer-checked:opacity-100">{dag}</span>
+						</label>	
+					{/each}
+				</div>
+			</div>
+		{/if}
+		
+		
 		
 	</form>
 </div>
 
-<div class="hidden">
+<!-- <div class="hidden">
 	<p id="omgday">{day}</p>
 	<p id="omgpay">{pay}</p>
-</div>
+</div> -->
 
 <div id="cart" name="cart" class="hidden">
 

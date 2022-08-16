@@ -10,7 +10,7 @@
     });
 </script>
 
-<div class="mx-auto text-left text-4xl max-w-screen-md flex space-x-4 items-center text-white">
+<div class="mx-auto text-left text-4xl max-w-screen-lg flex space-x-4 items-center text-white">
 
     <div class="mix-blend-multiply">
         <img  src="/icons8-checkmark.gif" width="200" alt="checkout info" />
@@ -18,6 +18,5 @@
 
 
 
-    <p>Vaše objednávka byla úspěšně přijata,
-        arigatōgozaimashita!</p>
+    <p>Vaše objednávka byla úspěšně přijata, arigatōgozaimashita!</p>
 </div>

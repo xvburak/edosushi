@@ -4,11 +4,11 @@
 </script>
 
 <div class="flex flex-1 ">
-    <div class="flex flex-col w-1/2">
+    <div class="flex flex-col w-full md:w-1/2">
         <CartContents />
     </div>
 
-    <div class="flex flex-col w-1/2">
+    <div class="flex flex-col base w-1/2">
         <FormTest />
     </div>
  </div>

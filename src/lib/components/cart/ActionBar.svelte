@@ -14,7 +14,7 @@
 </script>
 {#if $page.url.pathname === '/boxcart'}
     {#if boxsumka > 4}
-    <a href="/cart2" class="w-full z-50  base bg-green text-white p-4 py-6 leading-tight flex justify-between">
+    <a sveltekit:prefetch href="/cart2" class="w-full z-50  base bg-green text-white p-4 py-6 leading-tight flex justify-between">
         <p class="actionbar  whitespace-nowrap truncate w-2/3">
             Přidat do košíku
         </p>
@@ -27,7 +27,7 @@
         </p>
     </a>
 
-    <a href="/cart2" class="w-full z-50 phone bg-green text-white p-4 py-6 leading-tight fixed bottom-0 justify-between">
+    <a sveltekit:prefetch href="/cart2" class="w-full z-50 phone bg-green text-white p-4 py-6 leading-tight fixed bottom-0 justify-between">
         <div class="flex">
             <p class="actionbar whitespace-nowrap truncate w-full">
                 Přidat do košíku
@@ -62,7 +62,7 @@
 {:else}
     {#if settotal > 0}
 
-    <a href="/cart2" class="w-full z-50 base  bg-green text-white p-4 py-6 leading-tight flex justify-between">
+    <a sveltekit:prefetch href="/cart2" class="w-full z-50 base  bg-green text-white p-4 py-6 leading-tight flex justify-between">
         <p class="actionbar  whitespace-nowrap truncate">
             Přidat do košíku
         </p>
@@ -72,7 +72,7 @@
         </p>
     </a>
 
-    <a href="/cart2" class="w-full z-50  phone bg-green text-white p-4 py-6 leading-tight fixed bottom-0 justify-between">
+    <a sveltekit:prefetch href="/cart2" class="w-full z-50  phone bg-green text-white p-4 py-6 leading-tight fixed bottom-0 justify-between">
        <div class="flex">
             <p class="actionbar  whitespace-nowrap truncate w-full">
                 Přidat do košíku

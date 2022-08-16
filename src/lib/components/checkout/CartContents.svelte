@@ -3,8 +3,14 @@
     import { boxcart } from "$lib/data/boxcart.js";
 	import { boxes } from "$lib/data/boxes.js";
 
+	$: boxsumka = $boxcart.reduce((sum, item) => sum + item.quantity, 0)
+
 	import { setcart } from "$lib/data/setcart.js";
 	import { sets } from "$lib/data/sets.js";
+
+	function handleClick() {
+		window.location.href = '/mobilecheckout'
+	}
 
 	import LastTimeAdd from "$lib/components/checkout/LastTimeAdd.svelte";
 
@@ -94,7 +100,7 @@
                 <p>{item.quantity} ks</p>
                 <button on:click={() => boxPlusItem(item)}>+</button>
 			</div>
-            <div class="w-1/3 ">
+            <div class="w-1/3 md:text-left text-right">
                 <p>{item.price * item.quantity} Kč</p>
             </div>
 			
@@ -112,7 +118,7 @@
                 <p>{item.quantity} ks</p>
                 <button on:click={() => setPlusItem(item)}>+</button>
 			</div>
-            <div class="w-1/3 ">
+            <div class="w-1/3 md:text-left text-right">
                 <p>{item.price * item.quantity} Kč</p>
             </div>
 			
@@ -143,28 +149,52 @@
 	
 {/if} -->
 
-{#each $boxes as product}
+	{#each $boxes as product}
 	<!-- svelte-ignore empty-block -->
 	{#if $boxcart.includes(product)}
 
 	{:else}
-		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => boxAddToCart(product)}>
+		<button class="w-full border-t-2 border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => boxAddToCart(product)}>
 			<p class="actionbar  whitespace-nowrap truncate">
-				<span>+</span> Přidat {product.title}
+				<span>+</span> {product.title}
 			</p>
 		</button>
 	{/if}
 {/each}
 
-{#each $sets as product}
+
+	{#each $sets as product}
 	<!-- svelte-ignore empty-block -->
-	{#if $setcart.includes(product)}
+		{#if $setcart.includes(product)}
 
-	{:else}
-		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => setAddToCart(product)}>
-			<p class="actionbar  whitespace-nowrap truncate">
-				<span>+</span> Přidat {product.title}
+		{:else}
+			<button class="w-full border-t-2 border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => setAddToCart(product)}>
+				<p class="actionbar  whitespace-nowrap truncate">
+					<span>+</span> {product.title}
+				</p>
+			</button>
+
+		{/if}
+	{/each}
+
+	<div class="phone"> 
+		{#if boxsumka > 4 || $setcart.length > 0}
+	
+		<a sveltekit:prefetch href="/mobilecheckout" class="w-full border-t border-gray  bg-green text-white p-4 py-6 leading-tight flex justify-between">
+			<p class="actionbar text-center w-full  whitespace-nowrap truncate">
+				Objednat →			
 			</p>
-		</button>
+
+		</a>
+	
+	{:else}
+	
+	<div href="/cart1" class="w-full border-t border-gray bg-red text-white p-4 py-6 leading-tight flex justify-between">
+		<p class="actionbar text-center w-full opacity-50 whitespace-nowrap truncate">
+			Objednat →		
+		</p>
+	</div>
+		
 	{/if}
-{/each}
+		
+	</div>
