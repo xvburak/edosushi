@@ -9,10 +9,9 @@
  </script>
 
 {#if $page.url.pathname === '/onas'}
-<section class="bg-green flex flex-col h-screen">
+<section class="bg-green">
     <Anouncment /> 
     <NavBar />
-       
             <slot />
         
 </section>

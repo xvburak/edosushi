@@ -127,27 +127,7 @@
 	{/each}
 </div>
 
-<!-- <LastTimeAdd /> -->
 
-<!-- {#if $setcart = "undefined"}
-	{#each $sets as product}
-		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => setAddToCart(product)}>
-			<p class="actionbar  whitespace-nowrap truncate">
-				<span>+</span> {product.title}
-			</p>
-		</button>
-	{/each}
-	{#each $boxes as product}
-		<button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => boxAddToCart(product)}>
-			<p class="actionbar  whitespace-nowrap truncate">
-				<span>+</span> Přidat Obědový box
-			</p>
-		</button>
-	{/each}
-
-{:else if $boxcart = "undefined"}
-	
-{/if} -->
 
 	{#each $boxes as product}
 	<!-- svelte-ignore empty-block -->

@@ -25,8 +25,8 @@
 	import DateInput from '$lib/components/checkout/DateInput.svelte'
 	let date = new Date()
 
-	let selectedDay = 'Středa';
-	let selectedPay = 'Hotovost na místě';
+	let selectedDay = '';
+	let selectedPay = '';
 
 	function sendMessage() {
 		const today = new Date();
@@ -129,10 +129,10 @@
 		</div>
 		<div class="mb-4">
 			<h3>Zvolte způsob placení:</h3>
-			<div class="flex flex-wrap space-x-2">
+			<div class=" md:flex flex-wrap md:space-x-2">
 				{ #each $methods as method}
-				<label>
-					<input name="pay select" id="pay" class="peer appearance-none -mr-1" type=radio bind:group={selectedPay} value={method}>
+				<label class="">
+					<input name="pay select" id="pay" class="block peer appearance-none -mr-1" type=radio bind:group={selectedPay} value={method}>
 					<span id="payname" class="opacity-50 peer-checked:opacity-100">{method}</span>
 				</label>
 					
@@ -150,10 +150,10 @@
 		{:else}
 			<div class="mb-4">
 				<h3>Vyberte den doručení:</h3>
-				<div class="flex flex-wrap space-x-2">
+				<div class="md:flex flex-wrap md:space-x-2">
 					{#each $dage as dag}
 						<label>
-							<input name="day select" id="day" class="peer appearance-none -mr-1" type=radio bind:group={selectedDay} value={dag}>
+							<input name="day select" id="day" class="block peer appearance-none -mr-1" type=radio bind:group={selectedDay} value={dag}>
 							<span id="dayname" class="opacity-50 peer-checked:opacity-100">{dag}</span>
 						</label>	
 					{/each}

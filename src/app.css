@@ -3,22 +3,27 @@
 @tailwind utilities;
 
 html, body {
-    font-size: 17px;
+    font-size: 15px;
     @apply tabular-nums antialiased
 }
 
-.actionbar {
-    @apply text-[2rem];
-}
+
 
 @media (max-width: 767px) {
     .base {
         @apply hidden;
     }
+    .actionbar {
+        @apply text-2xl;
+    }
 }
 @media (min-width: 768px) {
     .phone {
         @apply hidden;
+    }
+
+    .actionbar {
+        @apply text-[2rem];
     }
 }
 
@@ -26,19 +31,19 @@ html, body {
 /* -------------------------------- */
 @media (min-width: 1024px) {
     html, body {
-        font-size: 19px;
+        font-size: 17px;
     }
 }
 
 @media (min-width: 1280px) {
     html, body {
-        font-size: 21px;
+        font-size: 19px;
     }
 }
 
 @media (min-width: 1536px) {
     html, body {
-        font-size: 23px;
+        font-size: 21px;
     }
 }
 
