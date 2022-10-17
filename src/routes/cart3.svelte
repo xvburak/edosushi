@@ -6,7 +6,7 @@
     onMount(() => {
         setTimeout(function () {
             window.location.href = "/";
-        }, 5000);
+        }, 10000);
     });
 </script>
 
