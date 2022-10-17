@@ -1,5 +1,4 @@
 <script>
-	import CheckOutBar from "$lib/components/checkout/CheckOutBar.svelte";
     import { boxcart } from "$lib/data/boxcart.js";
 	import { boxes } from "$lib/data/boxes.js";
 
@@ -11,8 +10,6 @@
 	function handleClick() {
 		window.location.href = '/mobilecheckout'
 	}
-
-	import LastTimeAdd from "$lib/components/checkout/LastTimeAdd.svelte";
 
 	const boxAddToCart = (product) => {
         for (let item of $boxcart) {

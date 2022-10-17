@@ -21,7 +21,7 @@
     <Anouncment /> 
     <NavBar />
     {#if $page.url.pathname === '/'}
-        <div class="bg-hp-bg bg-cover flex-1 overflow-auto flex flex-col justify-end">
+        <div class=" bg-[url('$lib/assets/daisuke-nakazawa-art-of-sushi-0.webp')] bg-cover flex-1 overflow-auto flex flex-col justify-end">
             <slot />
             <HPActionBar />
         </div>
