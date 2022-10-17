@@ -22,7 +22,7 @@
 
 
 
-    function sendMessage() {
+    async function sendMessage() {
         let today = new Date();
         var params = {
             datum: today,
@@ -34,8 +34,8 @@
             platba: document.getElementById("pay").value,
             obsah: document.getElementById("cart").innerHTML
         }
-        console.log(params);
-        client.create(params, "Objednavky").then(function (data) {
+
+        client.create( params, "Objednavky").then(function (data) {
             console.log(data);
         }, function (err) {
         console.log(err);
