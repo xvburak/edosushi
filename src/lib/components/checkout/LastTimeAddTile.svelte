@@ -1,9 +1,5 @@
 <script>
-    import {
-        products,
-        cart
-    } from "$lib/data/cart.js";
-    import LastTimeAddTile from "$lib/components/checkout/LastTimeAddTile.svelte";
+    import { cart } from "$lib/data/cart.js";
 
     const addToCart = (product) => {
         for (let item of $cart) {
@@ -43,14 +39,8 @@
 </script>
 
 
-<!-- <button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => addToCart(product)}>
-    <p class="actionbar  whitespace-nowrap truncate">
-        <span>+</span> Přidat {product.title}
-    </p>
-</button> -->
-
     {#if $cart.includes(product)}
-        
+     <p>hello</p> 
     {:else}
         <button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between" on:click={() => addToCart(product)}>
             <p class="actionbar  whitespace-nowrap truncate">

@@ -50,22 +50,3 @@
  
 
 
-    <!-- {#each $products as product}
-         
-    {/each} -->
-
-<!-- {#each $products as product}
-
-    {#each $cart as item}
-        {#if item.id === product.id}
-            omg
-        {:else}
-            <button class="w-full border-t border-gray bg-white p-4 py-6 leading-tight flex justify-between">
-                <p class="actionbar  whitespace-nowrap truncate">
-                <span>+</span> Přidat {product.title}
-                </p>
-            </button>
-        {/if}
-    {/each}
-{/each} -->
-
