@@ -28,7 +28,7 @@
 	let selectedDay = '';
 	let selectedPay = '';
 
-	function sendMessage() {
+	async function sendMessage() {
 		const today = new Date();
 		const options = { weekday: 'short', month: 'short', day: 'numeric' };
 		const todayName = today.toLocaleDateString('cs-CS', options);
@@ -40,7 +40,7 @@
 			doruc = selectedDay;
 		}
 
-		var params = {
+		 var params = {
 			datum: todayName,
 			jmeno: $address.name,
 			email: $address.email,
@@ -50,13 +50,21 @@
 			platba: selectedPay,
 			obsah: document.getElementById("cart").textContent
 		}
-		client.create(params, "Objednavky")
-			.then(function (data) {
-				console.log(data);
-				window.location.href = "/cart3";
-			}, function (err) {
-				console.log(err);
-			});
+
+		try {
+			await client.create(params, "Objednavky")
+			.then(window.location.href = "/cart3")
+
+		} catch (err) {
+			errors = extractErrors(err);
+		}
+
+			// .then(function (data) {
+			// 	console.log(data);
+			// 	window.location.href = "/cart3";
+			// }, function (err) {
+			// 	console.log(err);
+			// });
 
 	}
 
