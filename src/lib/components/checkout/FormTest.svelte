@@ -52,7 +52,7 @@
 		}
 
 		try {
-			await client.create(params, "Objednavky")
+			client.create(params, "Objednavky")
 			.then(window.location.href = "/cart3")
 
 		} catch (err) {
