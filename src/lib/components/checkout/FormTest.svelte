@@ -107,9 +107,41 @@
 	}
 </script>
 
+<form action="https://submit-form.com/zEPDHSit">
+	<input
+		type="hidden"
+		name="_redirect"
+		value="https://edosushi.netlify.app/cart3"
+  	/>
+	<label for="name">Name</label>
+	<input type="text" id="name" name="name" placeholder="Name" required="" />
+	<label for="email">Email</label>
+	<input type="email" id="email" name="email" placeholder="Email" required="" />
+	<label for="loves-pancakes">1. I love pancakes</label>
+	<select id="loves-pancakes" name="loves-pancakes" required="">
+	  <option value=""></option>
+	  <option value="strongly-agree">Strongly Agree</option>
+	  <option value="agree">Agree</option>
+	  <option value="neutral">Neutral</option>
+	  <option value="disagree">Disagree</option>
+	  <option value="strongly-disagree">Strongly Disagree</option>
+	</select>
+	<label for="loves-waffles">2. I love waffles</label>
+	<select id="loves-waffles" name="loves-waffles" required="">
+	  <option value=""></option>
+	  <option value="strongly-agree">Strongly Agree</option>
+	  <option value="agree">Agree</option>
+	  <option value="neutral">Neutral</option>
+	  <option value="disagree">Disagree</option>
+	  <option value="strongly-disagree">Strongly Disagree</option>
+	</select>
+	<label for="comments">Comments</label>
+	<textarea id="comments" name="comments" placeholder="Comments"></textarea>
+	<button type="submit">Submit</button>
+  </form>
 
 
-<div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && (boxsumka> 4 ||
+<!-- <div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && (boxsumka> 4 ||
 	$setcart.length > 0)} class="bg-red p-4 flex-1 text-white">
 
 	<form name="contactForm" on:submit|preventDefault={submitHandler}>
@@ -172,7 +204,7 @@
 		
 		
 	</form>
-</div>
+</div> -->
 
 <!-- <div class="hidden">
 	<p id="omgday">{day}</p>

@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
     import {
         onMount
     } from 'svelte';
@@ -8,7 +8,7 @@
             window.location.href = "/";
         }, 10000);
     });
-</script> -->
+</script>
 
 <div class="mx-auto text-left text-4xl max-w-screen-lg flex space-x-4 items-center text-white">
 
