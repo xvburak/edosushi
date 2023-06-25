@@ -11,7 +11,10 @@
 		setcart
 	} from "$lib/data/setcart.js";
 
-	import { dage, methods } from "$lib/data/stores.js" 
+	import {
+		dage,
+		methods
+	} from "$lib/data/stores.js"
 
 	import {
 		address
@@ -30,7 +33,11 @@
 
 	async function sendMessage() {
 		const today = new Date();
-		const options = { weekday: 'short', month: 'short', day: 'numeric' };
+		const options = {
+			weekday: 'short',
+			month: 'short',
+			day: 'numeric'
+		};
 		const todayName = today.toLocaleDateString('cs-CS', options);
 		let doruc = '';
 
@@ -40,7 +47,7 @@
 			doruc = selectedDay;
 		}
 
-		 var params = {
+		var params = {
 			datum: todayName,
 			jmeno: $address.name,
 			email: $address.email,
@@ -53,18 +60,18 @@
 
 		try {
 			client.create(params, "Objednavky")
-			.then(window.location.href = "/cart3")
+				.then(window.location.href = "/cart3")
 
 		} catch (err) {
 			errors = extractErrors(err);
 		}
 
-			// .then(function (data) {
-			// 	console.log(data);
-			// 	window.location.href = "/cart3";
-			// }, function (err) {
-			// 	console.log(err);
-			// });
+		// .then(function (data) {
+		// 	console.log(data);
+		// 	window.location.href = "/cart3";
+		// }, function (err) {
+		// 	console.log(err);
+		// });
 
 	}
 
@@ -106,39 +113,58 @@
 		}, {});
 	}
 </script>
+<div class="p-4">
+	<h1>📨 Pro objednávku, prosím, vyplňte následující informace:</h1>
+	<form action="https://submit-form.com/zEPDHSit">
+		<input type="hidden" name="_redirect" value="https://edosushi.netlify.app/cart3" />
+		<input type="text" id="name" name="name" placeholder="Jméno a příjmení / Název firmy" required="true" />
+		<input type="text" id="adresa" name="adresa" placeholder="Adresa doručení" required="true" />
+		<input type="text" id="phone" name="phone" placeholder="Telefonní číslo (kontakt na přebírající osobu)" required="true" />
+		<input type="email" id="email" name="email" placeholder="E-mail (pokud chcete zaslat potvrzení)" required="" />
+		<textarea id="comments" name="comments" placeholder="Poznámka pro doručovatele"></textarea>
+	
+		<label for="loves-pancakes">Zvolte způsob placení:</label>
 
-<form action="https://submit-form.com/zEPDHSit">
-	<input
-		type="hidden"
-		name="_redirect"
-		value="https://edosushi.netlify.app/cart3"
-  	/>
-	<label for="name">Name</label>
-	<input type="text" id="name" name="name" placeholder="Name" required="" />
-	<label for="email">Email</label>
-	<input type="email" id="email" name="email" placeholder="Email" required="" />
-	<label for="loves-pancakes">1. I love pancakes</label>
-	<select id="loves-pancakes" name="loves-pancakes" required="">
-	  <option value=""></option>
-	  <option value="strongly-agree">Strongly Agree</option>
-	  <option value="agree">Agree</option>
-	  <option value="neutral">Neutral</option>
-	  <option value="disagree">Disagree</option>
-	  <option value="strongly-disagree">Strongly Disagree</option>
-	</select>
-	<label for="loves-waffles">2. I love waffles</label>
-	<select id="loves-waffles" name="loves-waffles" required="">
-	  <option value=""></option>
-	  <option value="strongly-agree">Strongly Agree</option>
-	  <option value="agree">Agree</option>
-	  <option value="neutral">Neutral</option>
-	  <option value="disagree">Disagree</option>
-	  <option value="strongly-disagree">Strongly Disagree</option>
-	</select>
-	<label for="comments">Comments</label>
-	<textarea id="comments" name="comments" placeholder="Comments"></textarea>
-	<button type="submit">Submit</button>
-  </form>
+		<input type="radio" name="payment" value="Hotovost na místě" checked /> Hotovost na místě
+		<input type="radio" name="payment" value="Platba kartou na místě" /> Platba kartou na místě
+		<input type="radio" name="payment" value="Platba převodem" /> Platba převodem
+
+		<div class=""> 
+			{#if $address.name && $address.adresa && $address.email && $address.phone && (boxsumka > 4 || $setcart.length > 0)}
+		
+			<button type="submit" class="w-full border-t border-gray  bg-green text-white p-4 py-6 leading-tight flex justify-between">
+				<p class="actionbar  whitespace-nowrap truncate">
+					Potvrdit objednávku
+				</p>
+			
+				<p class="actionbar text-right whitespace-nowrap">
+					{fulltotal} Kč
+				</p>
+			</button>
+		
+		{:else}
+		
+		<div href="/cart1" class="w-full border-t border-gray bg-red text-white p-4 py-6 leading-tight flex justify-between">
+			<p class="actionbar opacity-50 whitespace-nowrap truncate">
+				Potvrdit objednávku
+			</p>
+		
+			<p class="actionbar opacity-50 text-right whitespace-nowrap">
+				{fulltotal} Kč
+			</p>
+		</div>
+			
+		{/if}
+			
+		</div>
+	</form>
+
+</div>
+
+
+
+
+
 
 
 <!-- <div class:bg-green={$address.name && $address.adresa && $address.email && $address.phone && (boxsumka> 4 ||
@@ -213,7 +239,7 @@
 
 <div id="cart" name="cart" class="hidden">
 
-<p>&#8203;/{ #each $boxcart as item }{#if item.quantity > 0}
+	<p>&#8203;/{ #each $boxcart as item }{#if item.quantity > 0}
 		/ {item.title}: {item.quantity} ks /{/if}
 		{/each}
 		</p>
@@ -235,38 +261,11 @@
 	<button type="submit">Register</button>
 </div> -->
 
-<div class=""> 
-	{#if $address.name && $address.adresa && $address.email && $address.phone && (boxsumka > 4 || $setcart.length > 0)}
 
-	<button class="w-full border-t border-gray  bg-green text-white p-4 py-6 leading-tight flex justify-between" on:click={ sendMessage }>
-		<p class="actionbar  whitespace-nowrap truncate">
-			Potvrdit objednávku
-		</p>
-	
-		<p class="actionbar text-right whitespace-nowrap">
-			{fulltotal} Kč
-		</p>
-	</button>
-
-{:else}
-
-<div href="/cart1" class="w-full border-t border-gray bg-red text-white p-4 py-6 leading-tight flex justify-between">
-    <p class="actionbar opacity-50 whitespace-nowrap truncate">
-        Potvrdit objednávku
-    </p>
-
-    <p class="actionbar opacity-50 text-right whitespace-nowrap">
-        {fulltotal} Kč
-    </p>
-</div>
-    
-{/if}
-	
-</div>
 
 <style>
 	input {
-		@apply bg-transparent placeholder:opacity-50 placeholder:text-white
+		@apply bg-transparent placeholder:opacity-50 placeholder:text-white block
 	}
 
 	/* h3 {

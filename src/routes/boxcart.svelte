@@ -4,7 +4,7 @@
   import CartTileBoxMobile from "$lib/components/cart/CartTileBoxMobile.svelte";
 </script>
 
-<div class="flex space-x-8 p-4 flex-1 base">
+<div class=" base pb-24">
   {#each $boxes as product}
        <CartTileBox product={product} />
   {/each}

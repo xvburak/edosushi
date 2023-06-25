@@ -4,7 +4,7 @@
   import CartTileSetMobile from "$lib/components/cart/CartTileSetMobile.svelte";
 </script>
 
-<div class="flex base space-x-8 p-4 flex-1 ">
+<div class="base pb-24">
   {#each $sets as product}
        <CartTileSet product={product} />
   {/each}
